@@ -1,8 +1,14 @@
-div#memory_board > div{
+#memory_board {
+  width: 900px;
+  text-align:center;
+  margin: auto;
+}
+
+#memory_board > div{
   background-color: pink;
   border:1px solid blue;
-  width:100px;
-  height:100px;
+  width:160px;
+  height:160px;
   float:left;
   margin:10px;
   padding:20px;
