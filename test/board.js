@@ -3,9 +3,8 @@ const assert = require('chai').assert;
 const Board   = require('../lib/board');
 
 
-//
 describe('the board', function() {
-//
+
   it('is an object', function() {
     assert(new Board());
   });
