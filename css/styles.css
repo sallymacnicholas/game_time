@@ -18,10 +18,6 @@
   text-align:center;
 }
 
-.dolphin {
-  background: url('images/dolphin.png')
-}
-
 div .card {
   transition-property: background-image;
   transition-duration: 2s;
