@@ -1591,19 +1591,27 @@
 	};
 
 	Board.prototype.compare = function (board) {
+	  var audio = new Audio('sounds/tada.wav');
 	  if (this.selectedCards[1].image === this.selectedCards[3].image) {
 	    this.matchedCards += 2;
+	    audio.play();
 	    this.checkIfGameWon();
 	    this.selectedCards = [];
 	  } else {
-	    setTimeout(function () {
-	      $(board.selectedCards[0]).css('background-image', '');
-	      board.selectedCards[1].visible = false;
-	      $(board.selectedCards[2]).css('background-image', '');
-	      board.selectedCards[3].visible = false;
-	      board.selectedCards = [];
-	    }, 1000);
+	    this.mismatchedCards(board);
 	  };
+	};
+
+	Board.prototype.mismatchedCards = function (board) {
+	  var audio = new Audio('sounds/error.wav');
+	  audio.play();
+	  setTimeout(function () {
+	    $(board.selectedCards[0]).css('background-image', '');
+	    board.selectedCards[1].visible = false;
+	    $(board.selectedCards[2]).css('background-image', '');
+	    board.selectedCards[3].visible = false;
+	    board.selectedCards = [];
+	  }, 1000);
 	};
 
 	Board.prototype.checkIfGameWon = function () {
@@ -9266,13 +9274,19 @@
 	    assert.equal(card.visible, true);
 	  });
 
-	  it('does not allow players to click visible cards as their guessing choice', function () {
+	  xit('does not allow players to click visible cards as their guessing choice', function () {
 	    var deck = ['card_1', 'card_2', 'card_3', 'card_4'];
 	    var div = 'div#card_1.card';
-	    var card = new Card("dolphin.png", 1);
+	    var card = new Card("dolphin.png", 0);
 
 	    var div_2 = 'div#card_2.card';
-	    var card_2 = new Card("dolphin.png", 2);
+	    var card_2 = new Card("dolphin.png", 1);
+
+	    var div_3 = 'div#card_3.card';
+	    var card_3 = new Card("dog.png", 2);
+
+	    var div_4 = 'div#card_4.card';
+	    var card_4 = new Card("dog.png", 3);
 
 	    var board = new Board(deck);
 	    board.flipCard(div, card);
@@ -9280,33 +9294,68 @@
 
 	    assert.equal(card.visible, true);
 	    assert.equal(card_2.visible, true);
+	    assert.equal(card_3.visible, false);
+	    assert.equal(board.matchedCards, 2);
 
-	    assert.equal(matchedCards, 2);
-	    board.checkIfGameWon();
+	    board.flipCard(div_3, card_3);
 	    board.flipCard(div_2, card_2);
+
+	    assert.equal(card_2.visible, true);
+	    assert.equal(card_3.visible, true);
+
+	    board.flipCard(div_4, card_4);
+	    assert.equal(card_3.visible, false);
+	    assert.equal(card_4.visible, false);
 	  });
 
 	  it('can compare two flipped cards', function () {
 	    var deck = ['card_1', 'card_2', 'card_3', 'card_4'];
 	    var div = 'div#card_1.card';
-	    var card = new Card("dolphin.png", 1);
+	    var card = new Card("dolphin.png", 0);
 
 	    var div_2 = 'div#card_2.card';
-	    var card_2 = new Card("dog.png", 2);
+	    var card_2 = new Card("dog.png", 1);
+
+	    var div_3 = 'div#card_3.card';
+	    var card_3 = new Card("dog.png", 2);
 
 	    var board = new Board(deck);
-	    board.flipCard(div, card);
-	    board.flipCard(div_2, card_2);
+
+	    board.selectedCards.push(div, card);
+	    board.selectedCards.push(div_2, card_2);
+	    board.compare(board);
+
+	    assert.equal(board.matchedCards, 0);
+	    board.selectedCards = [];
+
+	    board.selectedCards.push(div_2, card_2);
+	    board.selectedCards.push(div_3, card_3);
 
 	    board.compare(board);
 
-	    assert.equal(card.visible, true);
-	    assert.equal(card_2.visible, true);
-
-	    assert.equal(matchedCards, 2);
+	    assert.equal(board.matchedCards, 2);
 	  });
 
-	  it('flips the two visible cards back if they do not match', function () {});
+	  it('flips the two visible cards back if they do not match', function () {
+	    var deck = ['card_1', 'card_2', 'card_3', 'card_4'];
+	    var div = 'div#card_1.card';
+	    var card = new Card("dolphin.png", 0);
+
+	    var div_2 = 'div#card_2.card';
+	    var card_2 = new Card("dog.png", 1);
+
+	    var board = new Board(deck);
+	    assert.equal(card.visible, false);
+	    assert.equal(card_2.visible, false);
+
+	    board.selectedCards.push(div, card);
+	    board.selectedCards.push(div_2, card_2);
+
+	    board.mismatchedCards(board);
+
+	    assert.equal(card.visible, false);
+	    assert.equal(card_2.visible, false);
+	  });
 
 	  it('ends game once all cards are flipped and directs player to index to select another deck', function () {});
 	});

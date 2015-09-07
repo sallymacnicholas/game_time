@@ -46,13 +46,19 @@ describe('the board', function() {
     assert.equal(card.visible, true);
   });
 
-  it('does not allow players to click visible cards as their guessing choice', function() {
+  xit('does not allow players to click visible cards as their guessing choice', function() {
     var deck = ['card_1', 'card_2', 'card_3', 'card_4']
     var div = 'div#card_1.card';
-    var card = new Card("dolphin.png", 1);
+    var card = new Card("dolphin.png", 0);
 
     var div_2 = 'div#card_2.card';
-    var card_2 = new Card("dolphin.png", 2);
+    var card_2 = new Card("dolphin.png", 1);
+
+    var div_3 = 'div#card_3.card';
+    var card_3 = new Card("dog.png", 2);
+
+    var div_4 = 'div#card_4.card';
+    var card_4 = new Card("dog.png", 3);
 
     var board = new Board(deck);
     board.flipCard(div, card);
@@ -60,34 +66,67 @@ describe('the board', function() {
 
     assert.equal(card.visible, true);
     assert.equal(card_2.visible, true);
+    assert.equal(card_3.visible, false);
+    assert.equal(board.matchedCards, 2);
 
-    assert.equal(matchedCards, 2);
-    board.checkIfGameWon();
+    board.flipCard(div_3, card_3);
     board.flipCard(div_2, card_2);
 
+    assert.equal(card_2.visible, true);
+    assert.equal(card_3.visible, true);
+
+    board.flipCard(div_4, card_4);
+    assert.equal(card_3.visible, false);
+    assert.equal(card_4.visible, false);
   });
 
   it('can compare two flipped cards', function() {
     var deck = ['card_1', 'card_2', 'card_3', 'card_4']
     var div = 'div#card_1.card';
-    var card = new Card("dolphin.png", 1);
+    var card = new Card("dolphin.png", 0);
 
     var div_2 = 'div#card_2.card';
-    var card_2 = new Card("dog.png", 2);
+    var card_2 = new Card("dog.png", 1);
+
+    var div_3 = 'div#card_3.card';
+    var card_3 = new Card("dog.png", 2);
 
     var board = new Board(deck);
-    board.flipCard(div, card);
-    board.flipCard(div_2, card_2);
 
-    board.compare(board)
+    board.selectedCards.push(div, card);
+    board.selectedCards.push(div_2, card_2);
+    board.compare(board);
 
-    assert.equal(card.visible, true);
-    assert.equal(card_2.visible, true);
+    assert.equal(board.matchedCards, 0);
+    board.selectedCards = [];
 
-    assert.equal(matchedCards, 2);
+    board.selectedCards.push(div_2, card_2);
+    board.selectedCards.push(div_3, card_3);
+
+    board.compare(board);
+
+    assert.equal(board.matchedCards, 2);
   });
 
   it('flips the two visible cards back if they do not match', function() {
+    var deck = ['card_1', 'card_2', 'card_3', 'card_4']
+    var div = 'div#card_1.card';
+    var card = new Card("dolphin.png", 0);
+
+    var div_2 = 'div#card_2.card';
+    var card_2 = new Card("dog.png", 1);
+
+    var board = new Board(deck);
+    assert.equal(card.visible, false);
+    assert.equal(card_2.visible, false);
+
+    board.selectedCards.push(div, card);
+    board.selectedCards.push(div_2, card_2);
+
+    board.mismatchedCards(board);
+
+    assert.equal(card.visible, false);
+    assert.equal(card_2.visible, false);
 
   });
 
