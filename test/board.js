@@ -1,6 +1,7 @@
 //const chai = require('chai');
 const assert = require('chai').assert;
-const Board   = require('../lib/board');
+const Board  = require('../lib/board');
+const Card   = require('../lib/card');
 
 
 describe('the board', function() {
@@ -11,29 +12,38 @@ describe('the board', function() {
 
   it('is made up of a deck of cards (array)', function() {
     var board = new Board();
-    assert.equal(board.deck_for_game, []);
+    assert.equal(board.deck_for_game.length, [].length);
   });
 
   it('shuffles the deck before rendering board', function() {
     var deck = ['card_1', 'card_2', 'card_3', 'card_4']
     var board = new Board(deck);
-    refute.equal(board.shuffle, ['card_1', 'card_2', 'card_3', 'card_4']);
+    assert.notEqual(board.shuffle, ['card_1', 'card_2', 'card_3', 'card_4']);
   });
 
   it('can flip a hidden card', function() {
     var deck = ['card_1', 'card_2', 'card_3', 'card_4']
-    //debugger;
+    var div = 'div#card_1.card';
+    var card = new Card("dolphin.png", 1);
+    assert.equal(card.visible, false);
+
     var board = new Board(deck);
+    board.flipCard(div, card);
 
-    var card = board.flipCard();
-
-    assert.equal(tile.num, 2);
-    assert.equal(tile.color, '#e57373');
-
+    assert.equal(card.visible, true);
   });
 //
   it('cannot flip a visible card to hidden', function() {
+    var deck = ['card_1', 'card_2', 'card_3', 'card_4']
+    var div = 'div#card_1.card';
+    var card = new Card("dolphin.png", 1);
+    card.visible = true;
+    assert.equal(card.visible, true);
 
+    var board = new Board(deck);
+    board.flipCard(div, card);
+
+    assert.equal(card.visible, true);
   });
 //
   it('does not allow players to click visible cards as their guessing choice', function() {

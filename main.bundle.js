@@ -78,14 +78,6 @@
 	  quit.addEventListener('click', function () {
 	    location.reload();
 	  });
-
-	  //var cards = document.querySelector('.card');
-	  //var clicks = 0;
-	  //cards.forEach(card)
-	  //  card.addEventListener('click', function() {
-	  //    clicks += 1;
-	  //    document.getElementById("clicks").innerHTML = clicks;
-	  //  });
 	});
 
 /***/ },
@@ -1601,7 +1593,7 @@
 
 	Board.prototype.flipCard = function (div, card) {
 	  var board = this;
-	  //incrementClickCounter();
+	  debugger;
 	  if (this.selectedCards.length <= 1) {
 	    this.cardFadeOut(div, card);
 	    card.visible = true;
