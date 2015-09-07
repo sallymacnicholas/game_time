@@ -1593,7 +1593,6 @@
 
 	Board.prototype.flipCard = function (div, card) {
 	  var board = this;
-	  debugger;
 	  if (this.selectedCards.length <= 1) {
 	    this.cardFadeOut(div, card);
 	    card.visible = true;
@@ -1602,7 +1601,7 @@
 	    this.cardFadeOut(div, card);
 	    card.visible = true;
 	    this.selectedCards.push(div, card);
-	    this.compare(div, card, board);
+	    this.compare(board);
 	  }
 	};
 
@@ -1612,7 +1611,7 @@
 	  }).fadeTo('slow', 1);
 	};
 
-	Board.prototype.compare = function (div, card, board) {
+	Board.prototype.compare = function (board) {
 	  if (this.selectedCards[1].image === this.selectedCards[3].image) {
 	    this.matchedCards += 2;
 	    this.checkIfGameWon();
