@@ -12,10 +12,9 @@ describe('a card', function(){
     assert(new Card());
   });
 
-  xit('has an image', function() {
-    var card = new Card();
-    card.image = url;
-    assert.equal(card.image, url);
+  it('has an image', function() {
+    var card = new Card('dog.jpg', 1);
+    assert.equal(card.image, 'dog.jpg');
   });
 
   it('has a default visible value of false, but can be changed', function(){
@@ -26,8 +25,8 @@ describe('a card', function(){
   });
 
   it('has an index', function() {
-    var card_1 = new Card();
-    var card_2 = new Card();
+    var card_1 = new Card('dog.jpg', 0);
+    var card_2 = new Card('cat.jpg', 1);
     assert.equal(card_1.index, 0);
     assert.equal(card_2.index, 1);
   });
