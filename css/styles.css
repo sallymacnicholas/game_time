@@ -92,3 +92,14 @@ ul {
   padding: 0;
   text-align: center;
 }
+
+.click_count {
+  display: none;
+  float: right;
+  margin-top: -28px;
+}
+
+p {
+  font-size: 1.6em;
+  color: #fff;
+}
