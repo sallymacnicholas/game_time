@@ -95,11 +95,32 @@ ul {
 
 .click_count {
   display: none;
-  float: right;
-  margin-top: -28px;
+  float: center;
+  margin-top: -47px;
 }
 
 p {
   font-size: 1.6em;
   color: #fff;
+  padding-bottom: 0px;
+  margin-bottom: 5px;
+}
+
+#quit {
+  width: 150px;
+  height: 30px;
+  border-radius: 5px;
+  background: #fff;
+  font-size: 1em;
+  color: #09337b;
+}
+
+.instructions {
+  padding-top: 160px;
+  padding-left: 110px;
+  color: #FFFFFF;
+  font-size: 1.67em;
+  width: 50%;
+  height: 200px;
+  background: url('/images/instructions.png') no-repeat center;
 }
