@@ -1636,7 +1636,7 @@
 
 	Board.prototype.cardFadeOut = function (div, card) {
 	  $(div).fadeTo('fast', 0.5, function () {
-	    $(this).css('background-image', 'url(images/' + card.image + ')');
+	    $(this).css('background-image', 'url(' + card.image + ')');
 	  }).fadeTo('slow', 1);
 	};
 
