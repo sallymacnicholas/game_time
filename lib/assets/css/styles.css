@@ -68,23 +68,23 @@ li {
 }
 
 .sesamebutton {
-  background:url('/images/icons/sesame.jpg');
+  background:url('/lib/assets/images/icons/sesame.jpg');
 }
 
 .mysterybutton {
-  background:url('/images/icons/mystery.jpg');
+  background:url('/lib/assets/images/icons/mystery.jpg');
 }
 
 .shapesbutton {
-  background:url('/images/icons/shapes.jpg');
+  background:url('/lib/assets/images/icons/shapes.jpg');
 }
 
 .lettersbutton {
-  background:url('/images/icons/letters.jpg');
+  background:url('/lib/assets/images/icons/letters.jpg');
 }
 
 .colorsbutton {
-  background:url('/images/icons/colors.jpg');
+  background:url('/lib/assets/images/icons/colors.jpg');
 }
 
 ul {
@@ -122,5 +122,5 @@ p {
   font-size: 1.67em;
   width: 50%;
   height: 200px;
-  background: url('/images/instructions.png') no-repeat center;
+  background: url('/lib/assets/images/instructions.png') no-repeat center;
 }
