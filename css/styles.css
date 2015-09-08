@@ -1,12 +1,29 @@
+body {
+  background: url("/images/bg.jpg") no-repeat center center fixed;
+  background-size: cover;
+  margin: auto;
+}
+
+nav {
+  background: #FFFFFF;
+  height: 80px;
+  width: 100%;
+  position: fixed;
+  margin-top: 0;
+  box-shadow: 0px 5px 5px #999; 
+}
+
 #memory_board {
   width: 900px;
   text-align:center;
   margin: auto;
+  padding-top: 100px;
+
 }
 
 #memory_board > div{
-  background-color: pink;
-  border:1px solid grey;
+  background-color: #c7cede;
+  box-shadow: 0 0 10px #888888;
   border-radius: 5px;
   width:160px;
   height:160px;
@@ -24,3 +41,55 @@ div .card {
   transition-timing-function: linear;
 }
 
+li {
+  list-style: none;
+  display: inline-block;
+}
+
+.button {
+  -webkit-transition:-webkit-transform 1s,opacity 1s,background 1s,width 1s,height 1s,font-size 1s;
+  -o-transition-property:width,height,-o-transform,background,font-size,opacity,color;
+  -o-transition-duration:1s,1s,1s,1s,1s,1s,1s;
+  -moz-transition-property:width, height, -moz-transform, background, font-size, opacity, color;
+  -moz-transition-duration:1s,1s,1s,1s,1s,1s,1s;
+  transition-property:width,height,transform,background,font-size,opacity;
+  transition-duration:.5s,.5s,.5s,.5s,.5s,.5s;
+  border: 0px;
+  border-radius: 5px;
+  height: 65px;
+  width: 150px;
+}
+
+.button:hover {
+  -moz-transform: rotate(360deg);
+  -webkit-transform: rotate(360deg);
+  -o-transform: rotate(360deg);
+  transform: rotate(360deg);
+  
+}
+
+.sesamebutton {
+  background:url('/images/icons/sesame.jpg');
+}
+
+.mysterybutton {
+  background:url('/images/icons/mystery.jpg');
+}
+
+.shapesbutton {
+  background:url('/images/icons/shapes.jpg');
+}
+
+.lettersbutton {
+  background:url('/images/icons/letters.jpg');
+}
+
+.colorsbutton {
+  background:url('/images/icons/colors.jpg');
+}
+
+ul {
+  margin: 10px;
+  padding: 0;
+  text-align: center;
+}
