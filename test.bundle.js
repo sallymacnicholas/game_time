@@ -1529,8 +1529,6 @@
 
 	var numberOfClicks = 0;
 
-	var pets_2 = ['dog.png', 'dog.png', 'dolphin.png', 'dolphin.png', 'cat.png', 'cat.png', 'capybara.png', 'capybara.png'];
-
 	function Board(array) {
 	  this.deck = array;
 	  this.deck_for_game = [];
@@ -1540,6 +1538,8 @@
 
 	Board.prototype.render = function () {
 	  this.shuffle();
+	  $('.click_count').css('display', 'block');
+	  $('.instructions').css('display', 'none');
 	  for (var i = 0; i < this.deck.length; i++) {
 	    var card = new Card(this.deck[i], i);
 	    this.deck_for_game.push(card);
@@ -1671,8 +1671,8 @@
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
-		module.hot.accept("!!/Users/whitney/Desktop/turing/4_module/projects/game_time/node_modules/mocha-loader/node_modules/css-loader/index.js!/Users/whitney/Desktop/turing/4_module/projects/game_time/node_modules/mocha/mocha.css", function() {
-			var newContent = require("!!/Users/whitney/Desktop/turing/4_module/projects/game_time/node_modules/mocha-loader/node_modules/css-loader/index.js!/Users/whitney/Desktop/turing/4_module/projects/game_time/node_modules/mocha/mocha.css");
+		module.hot.accept("!!/Users/sallymae/Turing/Module_4/projects/game-time-starter-kit/node_modules/mocha-loader/node_modules/css-loader/index.js!/Users/sallymae/Turing/Module_4/projects/game-time-starter-kit/node_modules/mocha/mocha.css", function() {
+			var newContent = require("!!/Users/sallymae/Turing/Module_4/projects/game-time-starter-kit/node_modules/mocha-loader/node_modules/css-loader/index.js!/Users/sallymae/Turing/Module_4/projects/game-time-starter-kit/node_modules/mocha/mocha.css");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});

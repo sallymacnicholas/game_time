@@ -53,32 +53,51 @@
 
 	$(document).ready(function () {
 
-	  var pets = ['dog.png', 'dog.png', 'dolphin.png', 'dolphin.png'];
+	  var shapes = ['triangle.png', 'triangle.png', 'circle.png', 'circle.png', 'star.png', 'star.png', 'square.png', 'square.png'];
 
-	  var staff = ['horace.png', 'horace.png', 'mike.png', 'mike.png', 'jeff.png', 'jeff.png', 'andrew.png', 'andrew.png'];
+	  var letters = ['a.png', 'a.png', 'b.png', 'b.png', 'c.png', 'c.png', 'd.png', 'd.png'];
 
-	  var paws = ['rubble.png', 'rubble.png', 'rocky.png', 'rocky.png', 'skye.png', 'skye.png', 'zuma.png', 'zuma.png', 'marshall.png', 'marshall.png', 'chase.png', 'chase.png'];
+	  var mystery = ['horace.png', 'horace.png', 'mike.png', 'mike.png', 'jeff.png', 'jeff.png', 'andrew.png', 'andrew.png'];
 
-	  var petsDeck = document.getElementById('pets');
+	  var sesame = ['elmo.jpg', 'elmo.jpg', 'berternie.jpg', 'berternie.jpg', 'cookie.jpg', 'cookie.jpg', 'bigbird.jpg', 'bigbird.jpg'];
 
-	  petsDeck.addEventListener('click', function () {
-	    var board = new Board(pets);
+	  var colors = ['red.jpg', 'red.jpg', 'blue.jpg', 'blue.jpg', 'green.jpg', 'green.jpg', 'yellow.jpg', 'yellow.jpg'];
+
+	  var shapesDeck = document.getElementById('shapes');
+	  shapesDeck.addEventListener('click', function () {
+	    var board = new Board(shapes);
 	    board.render();
 	    board.bindCardListeners();
 	    $("button.deck").remove();
 	  });
 
-	  var staffDeck = document.getElementById('staff');
-	  staffDeck.addEventListener('click', function () {
-	    var board = new Board(staff);
+	  var mysteryDeck = document.getElementById('mystery');
+	  mysteryDeck.addEventListener('click', function () {
+	    var board = new Board(mystery);
 	    board.render();
 	    board.bindCardListeners();
 	    $("button.deck").remove();
 	  });
 
-	  var pawsDeck = document.getElementById('paws');
-	  pawsDeck.addEventListener('click', function () {
-	    var board = new Board(paws);
+	  var sesameDeck = document.getElementById('sesame');
+	  sesameDeck.addEventListener('click', function () {
+	    var board = new Board(sesame);
+	    board.render();
+	    board.bindCardListeners();
+	    $("button.deck").remove();
+	  });
+
+	  var lettersDeck = document.getElementById('letters');
+	  lettersDeck.addEventListener('click', function () {
+	    var board = new Board(letters);
+	    board.render();
+	    board.bindCardListeners();
+	    $("button.deck").remove();
+	  });
+
+	  var colorsDeck = document.getElementById('colors');
+	  colorsDeck.addEventListener('click', function () {
+	    var board = new Board(colors);
 	    board.render();
 	    board.bindCardListeners();
 	    $("button.deck").remove();
@@ -1560,8 +1579,6 @@
 
 	var numberOfClicks = 0;
 
-	var pets_2 = ['dog.png', 'dog.png', 'dolphin.png', 'dolphin.png', 'cat.png', 'cat.png', 'capybara.png', 'capybara.png'];
-
 	function Board(array) {
 	  this.deck = array;
 	  this.deck_for_game = [];
@@ -1571,6 +1588,8 @@
 
 	Board.prototype.render = function () {
 	  this.shuffle();
+	  $('.click_count').css('display', 'block');
+	  $('.instructions').css('display', 'none');
 	  for (var i = 0; i < this.deck.length; i++) {
 	    var card = new Card(this.deck[i], i);
 	    this.deck_for_game.push(card);
