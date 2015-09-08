@@ -57,6 +57,8 @@
 
 	  var staff = ['horace.png', 'horace.png', 'mike.png', 'mike.png', 'jeff.png', 'jeff.png', 'andrew.png', 'andrew.png'];
 
+	  var paws = ['rubble.png', 'rubble.png', 'rocky.png', 'rocky.png', 'skye.png', 'skye.png', 'zuma.png', 'zuma.png', 'marshall.png', 'marshall.png', 'chase.png', 'chase.png'];
+
 	  var petsDeck = document.getElementById('pets');
 
 	  petsDeck.addEventListener('click', function () {
@@ -69,6 +71,14 @@
 	  var staffDeck = document.getElementById('staff');
 	  staffDeck.addEventListener('click', function () {
 	    var board = new Board(staff);
+	    board.render();
+	    board.bindCardListeners();
+	    $("button.deck").remove();
+	  });
+
+	  var pawsDeck = document.getElementById('paws');
+	  pawsDeck.addEventListener('click', function () {
+	    var board = new Board(paws);
 	    board.render();
 	    board.bindCardListeners();
 	    $("button.deck").remove();
@@ -1612,31 +1622,40 @@
 	};
 
 	Board.prototype.compare = function (board) {
+	  var audio = new Audio('sounds/tada.wav');
 	  if (this.selectedCards[1].image === this.selectedCards[3].image) {
 	    this.matchedCards += 2;
-	    this.checkIfGameWon();
+	    audio.play();
+	    this.checkIfGameWon(board);
 	    this.selectedCards = [];
 	  } else {
-	    setTimeout(function () {
-	      $(board.selectedCards[0]).css('background-image', '');
-	      board.selectedCards[1].visible = false;
-	      $(board.selectedCards[2]).css('background-image', '');
-	      board.selectedCards[3].visible = false;
-	      board.selectedCards = [];
-	    }, 1000);
+	    this.mismatchedCards(board);
 	  };
 	};
 
-	Board.prototype.checkIfGameWon = function () {
+	Board.prototype.mismatchedCards = function (board) {
+	  var audio = new Audio('sounds/error.wav');
+	  audio.play();
+	  setTimeout(function () {
+	    $(board.selectedCards[0]).css('background-image', '');
+	    board.selectedCards[1].visible = false;
+	    $(board.selectedCards[2]).css('background-image', '');
+	    board.selectedCards[3].visible = false;
+	    board.selectedCards = [];
+	  }, 1000);
+	};
+
+	Board.prototype.checkIfGameWon = function (board) {
 	  if (this.matchedCards === this.deck.length) {
 	    setTimeout(function () {
 	      alert('You win! And you did it in ' + numberOfClicks + ' clicks!');
-	      document.getElementById('memory_board').innerHTML = '';
-	      var newGame = new Board(pets_2);
-	      numberOfClicks = 0;
-	      $("#clicks").html(numberOfClicks);
-	      newGame.render();
-	      newGame.bindCardListeners();
+	      window.location.reload();
+	      //document.getElementById('memory_board').innerHTML = 'index.html';
+	      //var newGame = new Board(pets_2);
+	      //numberOfClicks = 0;
+	      //$("#clicks").html(numberOfClicks);
+	      //newGame.render();
+	      //newGame.bindCardListeners();
 	    }, 700);
 	  }
 	};
