@@ -1,5 +1,5 @@
 body {
-  background: url("/lib/assets/images/bg.jpg") no-repeat center center fixed;
+  background: url("bg.jpg") no-repeat center center fixed;
   background-size: cover;
   margin: auto;
 }
@@ -64,7 +64,7 @@ li {
   -webkit-transform: rotate(360deg);
   -o-transform: rotate(360deg);
   transform: rotate(360deg);
-  
+
 }
 
 .sesamebutton {
