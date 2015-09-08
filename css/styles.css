@@ -1,12 +1,27 @@
+body {
+  background: url("/images/bg.jpg") no-repeat center center fixed;
+  background-size: cover;
+  margin: auto;
+}
+
+nav {
+  background: #FFFFFF;
+  height: 75px;
+  width: 100%;
+  position: fixed;
+  margin-top: 0;
+}
+
 #memory_board {
   width: 900px;
   text-align:center;
   margin: auto;
+  padding-top: 100px;
 }
 
 #memory_board > div{
-  background-color: pink;
-  border:1px solid grey;
+  background-color: #63ca9d;
+  box-shadow: 0 0 10px #888888;
   border-radius: 5px;
   width:160px;
   height:160px;
@@ -24,3 +39,41 @@ div .card {
   transition-timing-function: linear;
 }
 
+li {
+  list-style: none;
+  display: inline-block;
+}
+
+.pawbutton {
+  background:url('/images/icons/paw-button.png');
+  height: 50px;
+  width: 104px;
+  border-radius: 5px;
+}
+
+.staffbutton {
+  background:url('/images/icons/bonus.png');
+  height: 50px;
+  width: 104px;
+  border-radius: 5px;
+}
+
+.shapesbutton {
+  background:url('/images/icons/shapes.png');
+  height: 50px;
+  width: 104px;
+  border-radius: 5px;
+}
+
+.lettersbutton {
+  background:url('/images/icons/letters.png');
+  height: 50px;
+  width: 104px;
+  border-radius: 5px;
+}
+
+ul {
+  margin: 10px;
+  padding: 0;
+  text-align: center;
+}

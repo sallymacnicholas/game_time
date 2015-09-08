@@ -7,18 +7,30 @@
 
 </head>
 <body>
+<nav> 
+	<ul class="decks">
+		<li><button class="deck shapesbutton" id="shapes"></button></li>
+		<li><button class="deck pawbutton" id="paws"></button></li>
+		<li><button class="deck lettersbutton" id="letters"></button></li>
+		<li><button class="deck staffbutton" id="staff"></button></li>
+	</nav>	
+  
   <div id="memory_board"></div>
   <script src="main.bundle.js"></script>
-  <div class="decks">
+  
+  <!-- <div class="decks">
     <button class="deck" id="pets">Pets</button>
     <button class="deck" id="staff" >Staff</button>
     <button class="deck" id="paws">Paw Patrol</button>
-  </div>
+  </div> -->
+  
   <div class="quit">
-    <button id="quit" >Quit</button>
+    <button id="quit">Quit</button>
   </div>
+  
   <div class="click_count">
     <p>Clicks: <span id="clicks">0</span></p>
   </div>
+
 </body>
 </html>
