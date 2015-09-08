@@ -32,7 +32,7 @@ describe('the board', function() {
 
     assert.equal(card.visible, true);
   });
-//
+
   it('cannot flip a visible card to hidden', function() {
     var deck = ['card_1', 'card_2', 'card_3', 'card_4']
     var div = 'div#card_1.card';
@@ -127,11 +127,25 @@ describe('the board', function() {
 
     assert.equal(card.visible, false);
     assert.equal(card_2.visible, false);
-
   });
 
-  it('ends game once all cards are flipped and directs player to index to select another deck', function() {
+  xit('ends game once all cards are flipped and directs player to index to select another deck', function() {
+    var deck = ['card_1', 'card_2']
+    var div = 'div#card_1.card';
+    var card = new Card("dolphin.png", 0);
 
+    var div_2 = 'div#card_2.card';
+    var card_2 = new Card("dolphin.png", 1);
+
+    var board = new Board(deck);
+
+    board.selectedCards.push(div, card);
+    board.selectedCards.push(div_2, card_2);
+
+    board.compare(board);
+
+    assert.equal(board.matchedCards, 2);
+    assert.equal(board.deck.length, 2);
   });
 
 });

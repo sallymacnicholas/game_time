@@ -1626,7 +1626,7 @@
 	  if (this.selectedCards[1].image === this.selectedCards[3].image) {
 	    this.matchedCards += 2;
 	    audio.play();
-	    this.checkIfGameWon();
+	    this.checkIfGameWon(board);
 	    this.selectedCards = [];
 	  } else {
 	    this.mismatchedCards(board);
@@ -1645,16 +1645,17 @@
 	  }, 1000);
 	};
 
-	Board.prototype.checkIfGameWon = function () {
+	Board.prototype.checkIfGameWon = function (board) {
 	  if (this.matchedCards === this.deck.length) {
 	    setTimeout(function () {
 	      alert('You win! And you did it in ' + numberOfClicks + ' clicks!');
-	      document.getElementById('memory_board').innerHTML = '';
-	      var newGame = new Board(pets_2);
-	      numberOfClicks = 0;
-	      $("#clicks").html(numberOfClicks);
-	      newGame.render();
-	      newGame.bindCardListeners();
+	      window.location.reload();
+	      //document.getElementById('memory_board').innerHTML = 'index.html';
+	      //var newGame = new Board(pets_2);
+	      //numberOfClicks = 0;
+	      //$("#clicks").html(numberOfClicks);
+	      //newGame.render();
+	      //newGame.bindCardListeners();
 	    }, 700);
 	  }
 	};
